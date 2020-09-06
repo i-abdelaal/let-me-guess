@@ -1,29 +1,38 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import Colors from "../constants/colors";
 import DefaultStyles from "../constants/default-styles";
 import MainButton from "../components/MainButton";
 
 const GameOverScreen = (props) => {
   return (
-    <View style={styles.screen}>
-      <Text style={DefaultStyles.title}>DONE!</Text>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require("../assets/images/success.png")}
-          style={styles.image}
-        />
+    <ScrollView>
+      <View style={styles.screen}>
+        <Text style={DefaultStyles.title}>DONE!</Text>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require("../assets/images/success.png")}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.resultsContainer}>
+          <Text style={{ ...DefaultStyles.body, ...styles.results }}>
+            Your phone needed{" "}
+            <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
+            guess that you are{" "}
+            <Text style={styles.highlight}>{props.userNumber}</Text> years old.
+          </Text>
+        </View>
+        <MainButton onPress={props.onRestart}>PLAY AGAIN!</MainButton>
       </View>
-      <View style={styles.resultsContainer}>
-        <Text style={DefaultStyles.body} style={styles.results}>
-          Your phone needed{" "}
-          <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
-          guess the number{" "}
-          <Text style={styles.highlight}>{props.userNumber}</Text>.
-        </Text>
-      </View>
-      <MainButton onPress={props.onRestart}>PLAY AGAIN!</MainButton>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -32,15 +41,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 10,
   },
   imageContainer: {
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: Dimensions.get("window").width * 0.7,
+    height: Dimensions.get("window").width * 0.7,
+    borderRadius: (Dimensions.get("window").width * 0.7) / 2,
     borderWidth: 3,
     borderColor: "black",
     overflow: "hidden",
-    marginVertical: 30,
+    marginVertical: Dimensions.get("window").height / 30,
   },
   image: {
     width: "100%",
@@ -52,10 +62,10 @@ const styles = StyleSheet.create({
   },
   resultsContainer: {
     marginHorizontal: 30,
-    marginVertical: 15,
+    marginVertical: Dimensions.get("window").height / 60,
   },
   results: {
-    fontSize: 20,
+    fontSize: Dimensions.get("window").height < 400 ? 16 : 20,
     textAlign: "center",
   },
 });

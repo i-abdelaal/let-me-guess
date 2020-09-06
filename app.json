@@ -1,21 +1,20 @@
 {
   "expo": {
-    "name": "2nd-project",
-    "slug": "2nd-project",
+    "name": "Guess My Age",
+    "description": "Go ahead and challenge your phone to guess your age",
+    "slug": "guess_my_age",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "orientation": "default",
+    "icon": "./assets/age_icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/age_icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
